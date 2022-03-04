@@ -9,7 +9,7 @@ namespace PersonalTracking
 {
     public class ExportToExcel
     {
-        internal static void ExcelExport(DataGridView dataGridView1)
+        public static void ExcelExport(DataGridView dataGridView1)
         {
             Microsoft.Office.Interop.Excel._Application app = new Microsoft.Office.Interop.Excel.Application();
             Microsoft.Office.Interop.Excel._Workbook workbook = app.Workbooks.Add(Type.Missing);
