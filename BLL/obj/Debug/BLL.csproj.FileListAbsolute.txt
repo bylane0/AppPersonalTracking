@@ -8,3 +8,13 @@ C:\Users\Juan Aubone\Downloads\BLL\obj\Debug\BLL.csproj.CoreCompileInputs.cache
 C:\Users\Juan Aubone\Downloads\BLL\obj\Debug\BLL.csproj.CopyComplete
 C:\Users\Juan Aubone\Downloads\BLL\obj\Debug\BLL.dll
 C:\Users\Juan Aubone\Downloads\BLL\obj\Debug\BLL.pdb
+C:\Users\Juan Aubone\Desktop\Nueva carpeta\AppPersonalTracking\BLL\bin\Debug\BLL.dll
+C:\Users\Juan Aubone\Desktop\Nueva carpeta\AppPersonalTracking\BLL\bin\Debug\BLL.pdb
+C:\Users\Juan Aubone\Desktop\Nueva carpeta\AppPersonalTracking\BLL\bin\Debug\DAL.dll
+C:\Users\Juan Aubone\Desktop\Nueva carpeta\AppPersonalTracking\BLL\bin\Debug\DAL.pdb
+C:\Users\Juan Aubone\Desktop\Nueva carpeta\AppPersonalTracking\BLL\bin\Debug\DAL.dll.config
+C:\Users\Juan Aubone\Desktop\Nueva carpeta\AppPersonalTracking\BLL\obj\Debug\BLL.csproj.AssemblyReference.cache
+C:\Users\Juan Aubone\Desktop\Nueva carpeta\AppPersonalTracking\BLL\obj\Debug\BLL.csproj.CoreCompileInputs.cache
+C:\Users\Juan Aubone\Desktop\Nueva carpeta\AppPersonalTracking\BLL\obj\Debug\BLL.csproj.CopyComplete
+C:\Users\Juan Aubone\Desktop\Nueva carpeta\AppPersonalTracking\BLL\obj\Debug\BLL.dll
+C:\Users\Juan Aubone\Desktop\Nueva carpeta\AppPersonalTracking\BLL\obj\Debug\BLL.pdb

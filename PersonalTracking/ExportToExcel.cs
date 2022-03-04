@@ -29,8 +29,7 @@ namespace PersonalTracking
                     worksheet.Cells[i + 2, j + 1] = dataGridView1.Rows[i].Cells[j].Value.ToString();
                 }
             }
-            workbook.SaveAs("C:\\OurExcel.xlsx");
-            workbook.Close();
+    
         }
     }
 }
