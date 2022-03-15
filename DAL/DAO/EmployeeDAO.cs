@@ -44,27 +44,34 @@ namespace DAL.DAO
                             Salary=e.Salary,
                             ImagePath=e.ImagePath,
                             birthDay=e.BirthDay,
-                            Adress=e.Adress
+                            Adress=e.Adress,
+                            Email = e.Email,
+                            PhoneNumber = e.PhoneNumber,
+                            Admission = e.Admission
 
                         }).OrderBy(x => x.UserNo).ToList();
                 foreach(var item in list)
             {
-                EmployeeDetailDTO dto = new EmployeeDetailDTO();
-                dto.UserNo = item.UserNo;
-                dto.Name = item.Name;
-                dto.Surname = item.Surname;
-                dto.Adress = item.Adress;  
-                dto.Salary=item.Salary;
-                dto.ImagePath = item.ImagePath;
-                dto.EmployeeID = item.EmployeeID;
-                dto.PositionName = item.PositionName;
-                dto.DepartmentName = item.DepartmentName;
-                dto.DepartmentID = item.DepartmentID;
-                dto.PositionID = item.PositionID;
-                dto.Password = item.Password;
-             
-                dto.isAdmin = item.isAdmin;
-                dto.BirthDay = item.birthDay;
+                EmployeeDetailDTO dto = new EmployeeDetailDTO
+                {
+                    UserNo = item.UserNo,
+                    Name = item.Name,
+                    Surname = item.Surname,
+                    Adress = item.Adress,
+                    Salary = item.Salary,
+                    ImagePath = item.ImagePath,
+                    EmployeeID = item.EmployeeID,
+                    PositionName = item.PositionName,
+                    DepartmentName = item.DepartmentName,
+                    DepartmentID = item.DepartmentID,
+                    PositionID = item.PositionID,
+                    Password = item.Password,
+                    isAdmin = item.isAdmin,
+                    BirthDay = item.birthDay,
+                    Email = item.Email,
+                    PhoneNumber=item.PhoneNumber,
+                    Admission=item.Admission
+                };
                 employeeList.Add(dto);
 
             }
@@ -128,6 +135,9 @@ namespace DAL.DAO
                 emp.BirthDay = employee.BirthDay;
                 emp.DepartmentID = employee.DepartmentID;
                 emp.PositionID = employee.PositionID;
+                emp.Email = employee.Email;
+                emp.PhoneNumber = employee.PhoneNumber;
+                emp.Admission = employee.Admission;
                 db.SubmitChanges();
             }
             catch (Exception ex)

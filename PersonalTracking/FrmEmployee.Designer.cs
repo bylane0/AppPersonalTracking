@@ -56,6 +56,12 @@
             this.label10 = new System.Windows.Forms.Label();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
+            this.txtEmail = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.txtPhone = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.dpAdmission = new System.Windows.Forms.DateTimePicker();
+            this.label13 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -71,7 +77,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(763, 100);
+            this.panel1.Size = new System.Drawing.Size(1114, 100);
             this.panel1.TabIndex = 0;
             // 
             // chAdmin
@@ -292,7 +298,7 @@
             // txtAdress
             // 
             this.txtAdress.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAdress.Location = new System.Drawing.Point(143, 387);
+            this.txtAdress.Location = new System.Drawing.Point(143, 515);
             this.txtAdress.Multiline = true;
             this.txtAdress.Name = "txtAdress";
             this.txtAdress.Size = new System.Drawing.Size(395, 130);
@@ -302,17 +308,16 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(12, 393);
+            this.label10.Location = new System.Drawing.Point(12, 521);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(80, 26);
             this.label10.TabIndex = 20;
             this.label10.Text = "Adress";
-            this.label10.Click += new System.EventHandler(this.label10_Click);
             // 
             // btnClose
             // 
             this.btnClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClose.Location = new System.Drawing.Point(435, 537);
+            this.btnClose.Location = new System.Drawing.Point(435, 665);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(103, 45);
             this.btnClose.TabIndex = 23;
@@ -323,7 +328,7 @@
             // btnSave
             // 
             this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSave.Location = new System.Drawing.Point(143, 537);
+            this.btnSave.Location = new System.Drawing.Point(143, 665);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(103, 45);
             this.btnSave.TabIndex = 22;
@@ -331,11 +336,71 @@
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
+            // txtEmail
+            // 
+            this.txtEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtEmail.Location = new System.Drawing.Point(143, 390);
+            this.txtEmail.Name = "txtEmail";
+            this.txtEmail.Size = new System.Drawing.Size(225, 32);
+            this.txtEmail.TabIndex = 25;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(12, 396);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(68, 26);
+            this.label11.TabIndex = 24;
+            this.label11.Text = "Email";
+            // 
+            // txtPhone
+            // 
+            this.txtPhone.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPhone.Location = new System.Drawing.Point(143, 429);
+            this.txtPhone.Name = "txtPhone";
+            this.txtPhone.Size = new System.Drawing.Size(225, 32);
+            this.txtPhone.TabIndex = 27;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(12, 435);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(75, 26);
+            this.label12.TabIndex = 26;
+            this.label12.Text = "Phone";
+            // 
+            // dpAdmission
+            // 
+            this.dpAdmission.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dpAdmission.Location = new System.Drawing.Point(143, 471);
+            this.dpAdmission.Name = "dpAdmission";
+            this.dpAdmission.Size = new System.Drawing.Size(395, 32);
+            this.dpAdmission.TabIndex = 29;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(12, 477);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(114, 26);
+            this.label13.TabIndex = 28;
+            this.label13.Text = "Admission";
+            // 
             // FrmEmployee
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(763, 594);
+            this.ClientSize = new System.Drawing.Size(1114, 716);
+            this.Controls.Add(this.dpAdmission);
+            this.Controls.Add(this.label13);
+            this.Controls.Add(this.txtPhone);
+            this.Controls.Add(this.label12);
+            this.Controls.Add(this.txtEmail);
+            this.Controls.Add(this.label11);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.txtAdress);
@@ -399,5 +464,11 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.TextBox txtEmail;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.TextBox txtPhone;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.DateTimePicker dpAdmission;
+        private System.Windows.Forms.Label label13;
     }
 }

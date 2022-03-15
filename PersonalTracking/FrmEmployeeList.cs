@@ -82,6 +82,9 @@ namespace PersonalTracking
             dataGridView1.Columns[11].Visible = false;
             dataGridView1.Columns[12].Visible = false;
             dataGridView1.Columns[13].Visible = false;
+            dataGridView1.Columns[14].HeaderText = "Email";
+            dataGridView1.Columns[15].HeaderText = "Phone Number";
+            dataGridView1.Columns[16].HeaderText = "Admission";
             comboFull = false;
             cmbDepartment.DataSource = dto.Departments;
             cmbDepartment.DisplayMember = "DepartmentName";
@@ -176,6 +179,9 @@ namespace PersonalTracking
             detail.EmployeeID = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[0].Value);
             detail.Salary = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[9].Value);
 
+            detail.Email = dataGridView1.Rows[e.RowIndex].Cells[14].Value.ToString();
+            detail.PhoneNumber = dataGridView1.Rows[e.RowIndex].Cells[15].Value.ToString();
+            detail.Admission = Convert.ToDateTime(dataGridView1.Rows[e.RowIndex].Cells[16].Value);
         }
 
         private void btnDelete_Click(object sender, EventArgs e)

@@ -11,6 +11,8 @@ using BLL;
 using DAL;
 using DAL.DTO;
 using System.IO;
+using System.Text.RegularExpressions;
+
 namespace PersonalTracking
 {
     public partial class FrmEmployee : Form
@@ -32,16 +34,16 @@ namespace PersonalTracking
 
         private void txtSalary_TextChanged(object sender, EventArgs e)
         {
-            
+
         }
-   
+
         private void txtSalary_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = General.isNumber(e);
         }
         EmployeeDTO dto = new EmployeeDTO();
-        public EmployeeDetailDTO detail = new EmployeeDetailDTO(); 
-        public bool isUpdate= false;
+        public EmployeeDetailDTO detail = new EmployeeDetailDTO();
+        public bool isUpdate = false;
         string imagePath = "";
         private void FrmEmployee_Load(object sender, EventArgs e)
         {
@@ -70,6 +72,9 @@ namespace PersonalTracking
                 imagePath = Application.StartupPath + "\\images\\" + detail.ImagePath;
                 txtImagePath.Text = imagePath;
                 pictureBox1.ImageLocation = imagePath;
+                txtEmail.Text = detail.Email;
+                txtPhone.Text = detail.PhoneNumber;
+                //dpAdmission.Value = Convert.ToDateTime(detail.Admission);
                 if (!UserStatic.isAdmin)
                 {
                     chAdmin.Enabled = false;
@@ -88,7 +93,7 @@ namespace PersonalTracking
                 int departmentID = Convert.ToInt32(cmbDepartment.SelectedValue);
                 cmbPosition.DataSource = dto.Positions.Where(x => x.DepartmentID == departmentID).ToList();
             }
-         
+
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -109,21 +114,10 @@ namespace PersonalTracking
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (txtUserNo.Text.Trim() == "")
-                MessageBox.Show("UserNo está vacío");
-        
-            else if (txtPassword.Text.Trim() == "")
-                MessageBox.Show("Password está vacío");
-            else if (txtName.Text.Trim() == "")
-                MessageBox.Show("Name está vacío");
-            else if (txtSurname.Text.Trim() == "")
-                MessageBox.Show("Surname está vacío");
-            else if (txtSalary.Text.Trim() == "")
-                MessageBox.Show("Salary está vacío");
-            else if (cmbDepartment.Text.Trim() == "")
-                MessageBox.Show("Department está vacío");
-            else if (cmbPosition.Text.Trim() == "")
-                MessageBox.Show("Position está vacío");
+            string message = ValidateForm();
+            if (!string.IsNullOrEmpty(message))
+                MessageBox.Show(message);
+
             else
             {
                 if (!isUpdate)
@@ -144,6 +138,9 @@ namespace PersonalTracking
                         employee.Adress = txtAdress.Text;
                         employee.BirthDay = dateTimePicker1.Value;
                         employee.ImagePath = fileName;
+                        employee.Email = txtEmail.Text;
+                        employee.PhoneNumber = txtPhone.Text;
+                        employee.Admission = dpAdmission.Value;
                         EmployeeBLL.AddEmployee(employee);
                         if (txtImagePath.Text.Trim() != "")
                         {
@@ -151,23 +148,9 @@ namespace PersonalTracking
                         }
 
                         MessageBox.Show("El empleado fue creado!");
-                        txtUserNo.Clear();
-                        txtPassword.Clear();
-                        chAdmin.Checked = false;
-                        txtName.Clear();
-                        txtSurname.Clear();
-                        txtSalary.Clear();
-                        txtAdress.Clear();
-                        txtImagePath.Clear();
-                        pictureBox1.Image = null;
-                        comboFull = false;
-                        cmbDepartment.SelectedIndex = -1;
-                        cmbPosition.DataSource = dto.Positions;
-                        cmbPosition.SelectedIndex = -1;
-                        comboFull = true;
-                        dateTimePicker1.Value = DateTime.Today;
+                        CleanFilters();
                     }
-                   
+
                 }
                 else if (isUpdate)
                 {
@@ -175,7 +158,7 @@ namespace PersonalTracking
                     if (result == DialogResult.Yes)
                     {
                         EMPLOYEE employee = new EMPLOYEE();
-                        if(txtImagePath.Text != imagePath)
+                        if (txtImagePath.Text != imagePath)
                         {
                             if (File.Exists(@"images\\" + detail.ImagePath))
                                 File.Delete(@"images\\" + detail.ImagePath);
@@ -197,20 +180,99 @@ namespace PersonalTracking
                         employee.DepartmentID = Convert.ToInt32(cmbDepartment.SelectedValue);
                         employee.PositionID = Convert.ToInt32(cmbPosition.SelectedValue);
                         employee.Salary = Convert.ToInt32(txtSalary.Text);
+                        employee.Email = txtEmail.Text;
+                        employee.PhoneNumber = txtPhone.Text;
+                        employee.Admission = dpAdmission.Value;
                         EmployeeBLL.UpdateEmployee(employee);
                         MessageBox.Show("El empleado fue actualizado!");
                         this.Close();
 
                     }
                 }
-                
+
             }
         }
 
-        private void label10_Click(object sender, EventArgs e)
+        private string ValidateForm()
         {
+            string message = string.Empty;
+            if (string.IsNullOrEmpty(txtUserNo.Text))
+                message += "UserNo está vacío" + Environment.NewLine;
+            if (string.IsNullOrEmpty(txtPassword.Text))
+                message += "Password está vacío" + Environment.NewLine;
+            if (string.IsNullOrEmpty(txtName.Text))
+                message += "Name está vacío" + Environment.NewLine;
+            if (string.IsNullOrEmpty(txtSurname.Text))
+                message += "Surname está vacío" + Environment.NewLine;
+            if (string.IsNullOrEmpty(txtSalary.Text))
+                message += "Salary está vacío" + Environment.NewLine;
+            if (string.IsNullOrEmpty(cmbDepartment.Text))
+                message += "Department está vacío" + Environment.NewLine;
+            if (string.IsNullOrEmpty(cmbPosition.Text))
+                message += "Position está vacío" + Environment.NewLine;
 
+            //Expresiones regulares
+            if (!ValidateEmail(txtEmail.Text))
+                message += "El email ingresado no es correcto" + Environment.NewLine;
+            if (!ValidatePhone(txtPhone.Text))
+                message += "El número de celular ingresado no es correcto" + Environment.NewLine;
+            return message;
         }
+
+        private bool ValidatePhone(string phoneNumber)
+        {
+            var regexPhone = @"^(\+)?(\d{1,2})?[( .-]*(\d{3})[) .-]*(\d{3,4})[ .-]?(\d{4})$";
+            var temp = Regex.IsMatch(phoneNumber, regexPhone);
+            if (temp) 
+                return true;
+            else
+                return false;
+        }
+
+
+        private bool ValidateEmail(string email)
+        {
+            string expresion = "\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*";
+            if (Regex.IsMatch(email, expresion))
+            {
+                if (Regex.Replace(email, expresion, String.Empty).Length == 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+
+        private void CleanFilters()
+        {
+            txtUserNo.Clear();
+            txtPassword.Clear();
+            chAdmin.Checked = false;
+            txtName.Clear();
+            txtSurname.Clear();
+            txtSalary.Clear();
+            txtAdress.Clear();
+            txtImagePath.Clear();
+            txtEmail.Clear();
+            dpAdmission.Value = DateTime.Today;
+            txtPhone.Clear();
+            pictureBox1.Image = null;
+            comboFull = false;
+            cmbDepartment.SelectedIndex = -1;
+            cmbPosition.DataSource = dto.Positions;
+            cmbPosition.SelectedIndex = -1;
+            comboFull = true;
+            dateTimePicker1.Value = DateTime.Today;
+        }
+
         bool isUnique = false;
         private void btnCheck_Click(object sender, EventArgs e)
         {
@@ -219,7 +281,8 @@ namespace PersonalTracking
             else
             {
                 isUnique = EmployeeBLL.isUnique(Convert.ToInt32(txtUserNo.Text));
-                if (!isUnique) {
+                if (!isUnique)
+                {
                     MessageBox.Show("Ya existe otro empleado con el mismo identificador");
                 }
                 else

@@ -9,7 +9,7 @@ namespace PersonalTracking
 {
     public class ExportToExcel
     {
-        public static void ExcelExport(DataGridView dataGridView1)
+        internal static void ExcelExport(DataGridView dataGridView1)
         {
             Microsoft.Office.Interop.Excel._Application app = new Microsoft.Office.Interop.Excel.Application();
             Microsoft.Office.Interop.Excel._Workbook workbook = app.Workbooks.Add(Type.Missing);
@@ -29,7 +29,8 @@ namespace PersonalTracking
                     worksheet.Cells[i + 2, j + 1] = dataGridView1.Rows[i].Cells[j].Value.ToString();
                 }
             }
-    
+            workbook.SaveAs("C:\\OurExcel.xlsx");
+            workbook.Close();
         }
     }
 }
