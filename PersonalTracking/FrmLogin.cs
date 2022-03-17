@@ -36,7 +36,10 @@ namespace PersonalTracking
             }
             else
             {
-                List<EMPLOYEE> employeeList = EmployeeBLL.GetEmployees(Convert.ToInt32(txtUserNo.Text), txtPassword.Text);
+   
+                string password = General.cifrar(txtPassword.Text);
+
+                List<EMPLOYEE> employeeList = EmployeeBLL.GetEmployees(Convert.ToInt32(txtUserNo.Text), password);
                 if(employeeList.Count == 0)
                 {
                     MessageBox.Show("El usuario o password no son correctos");

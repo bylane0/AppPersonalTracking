@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -163,12 +164,15 @@ namespace PersonalTracking
         {
 
         }
+      
 
         private void dataGridView1_RowEnter(object sender, DataGridViewCellEventArgs e)
         {
             detail.Name = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
             detail.Surname = dataGridView1.Rows[e.RowIndex].Cells[4].Value.ToString();
-            detail.Password = dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();
+
+            string hashPass = dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();
+            detail.Password = General.descifrar(hashPass);
             detail.ImagePath = dataGridView1.Rows[e.RowIndex].Cells[11].Value.ToString();
             detail.Adress = dataGridView1.Rows[e.RowIndex].Cells[12].Value.ToString();
             detail.isAdmin = Convert.ToBoolean(dataGridView1.Rows[e.RowIndex].Cells[10].Value);
@@ -178,7 +182,6 @@ namespace PersonalTracking
             detail.PositionID = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[8].Value);
             detail.EmployeeID = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[0].Value);
             detail.Salary = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[9].Value);
-
             detail.Email = dataGridView1.Rows[e.RowIndex].Cells[14].Value.ToString();
             detail.PhoneNumber = dataGridView1.Rows[e.RowIndex].Cells[15].Value.ToString();
             detail.Admission = Convert.ToDateTime(dataGridView1.Rows[e.RowIndex].Cells[16].Value);

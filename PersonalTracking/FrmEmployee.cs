@@ -12,6 +12,7 @@ using DAL;
 using DAL.DTO;
 using System.IO;
 using System.Text.RegularExpressions;
+using System.Security.Cryptography; // Libreria de cifrado.
 
 namespace PersonalTracking
 {
@@ -32,9 +33,25 @@ namespace PersonalTracking
             e.Handled = General.isNumber(e);
         }
 
-        private void txtSalary_TextChanged(object sender, EventArgs e)
+        public void OnGetFocus(object sender, EventArgs e)
         {
+            //Comprobamos si el texto es el default, y si lo es lo borramos
+            if (txtEmail.Text.Contains(txtEmail.Tag.ToString()))
+                txtEmail.Text = "";
+            //Ponemos el color en negro
+            txtEmail.ForeColor = Color.Black;
 
+        }
+
+        public void OnLostFocus(object sender, EventArgs e)
+        {
+            //En caso de que no haya texto, añadimos el texto por defecto y ponemos el color en gris
+            if (String.IsNullOrWhiteSpace(txtEmail.Text))
+            {
+                txtEmail.Text = txtEmail.Tag.ToString();
+                txtEmail.ForeColor = Color.Gray;
+
+            }
         }
 
         private void txtSalary_KeyPress(object sender, KeyPressEventArgs e)
@@ -57,6 +74,18 @@ namespace PersonalTracking
             cmbPosition.SelectedIndex = -1;
             cmbDepartment.SelectedIndex = -1;
             comboFull = true; //mostrar todos los departamentos y posiciones
+            if (!isUpdate)
+            {
+                //Almacenamos en el Tag el texto por defecto
+                txtEmail.Tag = "example@example.com";
+                //Ponemos el texto por defecto
+                txtEmail.Text = txtEmail.Tag.ToString();
+                //Ponemos el froecolor en gris
+                txtEmail.ForeColor = Color.Gray;
+                //Suscribimos el textbox a los eventos (Se puede hacer en el diseñador)
+                txtEmail.GotFocus += new EventHandler(OnGetFocus);
+                txtEmail.LostFocus += new EventHandler(OnLostFocus);
+            }
             if (isUpdate)
             {
                 txtName.Text = detail.Name;
@@ -114,6 +143,7 @@ namespace PersonalTracking
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            string temp;
             string message = ValidateForm();
             if (!string.IsNullOrEmpty(message))
                 MessageBox.Show(message);
@@ -122,13 +152,16 @@ namespace PersonalTracking
             {
                 if (!isUpdate)
                 {
+
                     if (!EmployeeBLL.isUnique(Convert.ToInt32(txtUserNo.Text)))
                         MessageBox.Show("El 'UserNo' ya se encuentra en uso por otro usuario");
                     else
                     {
                         EMPLOYEE employee = new EMPLOYEE();
                         employee.UserNo = Convert.ToInt32(txtUserNo.Text);
-                        employee.Password = txtPassword.Text;
+                        temp = General.cifrar(txtPassword.Text);
+                        employee.Password = temp;
+                        //employee.Password = txtPassword.Text;
                         employee.Name = txtName.Text;
                         employee.isAdmin = chAdmin.Checked;
                         employee.Salary = Convert.ToInt32(txtSalary.Text);
@@ -174,7 +207,9 @@ namespace PersonalTracking
                         employee.Name = txtName.Text;
                         employee.Surname = txtSurname.Text;
                         employee.isAdmin = chAdmin.Checked;
-                        employee.Password = txtPassword.Text;
+                        temp = General.cifrar(txtPassword.Text);
+                        employee.Password = temp;
+                        //employee.Password = txtPassword.Text;
                         employee.Adress = txtAdress.Text;
                         employee.BirthDay = dateTimePicker1.Value;
                         employee.DepartmentID = Convert.ToInt32(cmbDepartment.SelectedValue);
@@ -192,7 +227,9 @@ namespace PersonalTracking
 
             }
         }
+   
 
+       
         private string ValidateForm()
         {
             string message = string.Empty;
@@ -200,6 +237,8 @@ namespace PersonalTracking
                 message += "UserNo está vacío" + Environment.NewLine;
             if (string.IsNullOrEmpty(txtPassword.Text))
                 message += "Password está vacío" + Environment.NewLine;
+            else if (!ValidatePassword(txtPassword.Text))
+                message += "Password debe ser alfanumerica, contener al menos 1 mayuscula y menos de 10 caracteres totales" + Environment.NewLine;
             if (string.IsNullOrEmpty(txtName.Text))
                 message += "Name está vacío" + Environment.NewLine;
             if (string.IsNullOrEmpty(txtSurname.Text))
@@ -219,35 +258,41 @@ namespace PersonalTracking
             return message;
         }
 
-        private bool ValidatePhone(string phoneNumber)
+        private bool ValidatePassword(string password)
         {
-            var regexPhone = @"^(\+)?(\d{1,2})?[( .-]*(\d{3})[) .-]*(\d{3,4})[ .-]?(\d{4})$";
-            var temp = Regex.IsMatch(phoneNumber, regexPhone);
-            if (temp) 
+            /*
+           La contraseña debe tener entre 3 y 10 caracteres, al menos un dígito, al menos una minúscula y al menos una mayúscula.
+           NO puede tener otros símbolos.
+            */
+            var regexPass = @"^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{3,10}$";
+            var temp = Regex.IsMatch(password, regexPass);
+            if (temp)
                 return true;
             else
                 return false;
         }
 
-
+        private bool ValidatePhone(string phoneNumber)
+        {
+            var regexPhone = @"^(\+)?(\d{1,2})?[( .-]*(\d{3})[) .-]*(\d{3,4})[ .-]?(\d{4})$";
+            var temp = Regex.IsMatch(phoneNumber, regexPhone);
+            if (temp)
+                return true;
+            else
+                return false;
+        }
         private bool ValidateEmail(string email)
         {
-            string expresion = "\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*";
-            if (Regex.IsMatch(email, expresion))
+            string regexEmail = "\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*";
+            if (Regex.IsMatch(email, regexEmail))
             {
-                if (Regex.Replace(email, expresion, String.Empty).Length == 0)
-                {
+                if (Regex.Replace(email, regexEmail, String.Empty).Length == 0)
                     return true;
-                }
                 else
-                {
                     return false;
-                }
             }
             else
-            {
                 return false;
-            }
         }
 
 
