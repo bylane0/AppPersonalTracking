@@ -203,5 +203,10 @@ namespace PersonalTracking
         {
             ExportToExcel.ExcelExport(dataGridView1);
         }
+
+        private void btnAguinaldo_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

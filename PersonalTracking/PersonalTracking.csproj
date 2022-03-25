@@ -103,6 +103,12 @@
     <Compile Include="FrmEmployeeList.Designer.cs">
       <DependentUpon>FrmEmployeeList.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmGenerateAguinaldo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmGenerateAguinaldo.Designer.cs">
+      <DependentUpon>FrmGenerateAguinaldo.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -178,6 +184,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmEmployeeList.resx">
       <DependentUpon>FrmEmployeeList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmGenerateAguinaldo.resx">
+      <DependentUpon>FrmGenerateAguinaldo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmLogin.resx">
       <DependentUpon>FrmLogin.cs</DependentUpon>
@@ -282,5 +291,6 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

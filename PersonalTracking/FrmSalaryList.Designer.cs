@@ -30,6 +30,7 @@
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.btnExcel = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
             this.btnSearch = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -59,7 +60,7 @@
             this.btnNew = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.btnExcel = new System.Windows.Forms.Button();
+            this.btnAguinaldo = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -95,6 +96,17 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(426, 211);
             this.panel3.TabIndex = 1;
+            // 
+            // btnExcel
+            // 
+            this.btnExcel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExcel.Location = new System.Drawing.Point(44, 146);
+            this.btnExcel.Name = "btnExcel";
+            this.btnExcel.Size = new System.Drawing.Size(172, 48);
+            this.btnExcel.TabIndex = 43;
+            this.btnExcel.Text = "Export to Excel";
+            this.btnExcel.UseVisualStyleBackColor = true;
+            this.btnExcel.Click += new System.EventHandler(this.btnExcel_Click);
             // 
             // btnClear
             // 
@@ -332,6 +344,7 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.btnAguinaldo);
             this.panel2.Controls.Add(this.btnClose);
             this.panel2.Controls.Add(this.btnDelete);
             this.panel2.Controls.Add(this.btnNew);
@@ -345,7 +358,7 @@
             // btnClose
             // 
             this.btnClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClose.Location = new System.Drawing.Point(562, 18);
+            this.btnClose.Location = new System.Drawing.Point(607, 23);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(123, 65);
             this.btnClose.TabIndex = 15;
@@ -356,7 +369,7 @@
             // btnDelete
             // 
             this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDelete.Location = new System.Drawing.Point(418, 18);
+            this.btnDelete.Location = new System.Drawing.Point(463, 23);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(123, 65);
             this.btnDelete.TabIndex = 14;
@@ -367,7 +380,7 @@
             // btnNew
             // 
             this.btnNew.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNew.Location = new System.Drawing.Point(126, 18);
+            this.btnNew.Location = new System.Drawing.Point(171, 23);
             this.btnNew.Name = "btnNew";
             this.btnNew.Size = new System.Drawing.Size(123, 65);
             this.btnNew.TabIndex = 12;
@@ -378,7 +391,7 @@
             // btnUpdate
             // 
             this.btnUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUpdate.Location = new System.Drawing.Point(272, 18);
+            this.btnUpdate.Location = new System.Drawing.Point(317, 23);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(123, 65);
             this.btnUpdate.TabIndex = 13;
@@ -399,16 +412,22 @@
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             this.dataGridView1.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_RowEnter);
             // 
-            // btnExcel
+            // btnAguinaldo
             // 
-            this.btnExcel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExcel.Location = new System.Drawing.Point(44, 146);
-            this.btnExcel.Name = "btnExcel";
-            this.btnExcel.Size = new System.Drawing.Size(172, 48);
-            this.btnExcel.TabIndex = 43;
-            this.btnExcel.Text = "Export to Excel";
-            this.btnExcel.UseVisualStyleBackColor = true;
-            this.btnExcel.Click += new System.EventHandler(this.btnExcel_Click);
+            this.btnAguinaldo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAguinaldo.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnAguinaldo.BackColor = System.Drawing.SystemColors.Info;
+            this.btnAguinaldo.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnAguinaldo.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAguinaldo.Location = new System.Drawing.Point(12, 23);
+            this.btnAguinaldo.Name = "btnAguinaldo";
+            this.btnAguinaldo.Size = new System.Drawing.Size(140, 65);
+            this.btnAguinaldo.TabIndex = 16;
+            this.btnAguinaldo.Text = "Generate Aguinaldo";
+            this.btnAguinaldo.UseVisualStyleBackColor = false;
+            this.btnAguinaldo.Click += new System.EventHandler(this.btnAguinaldo_Click);
             // 
             // FrmSalaryList
             // 
@@ -469,5 +488,6 @@
         private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.Button btnExcel;
+        private System.Windows.Forms.Button btnAguinaldo;
     }
 }

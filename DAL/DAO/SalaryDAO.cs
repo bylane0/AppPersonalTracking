@@ -47,7 +47,8 @@ namespace DAL.DAO
                             monthID = s.MonthID,
                             salaryID = s.ID,
                             departmentID = e.DepartmentID,
-                            positionID = e.PositionID
+                            positionID = e.PositionID,
+                            Aguinaldo = s.Aguinaldo
 
                         }).OrderBy(x => x.year).ToList();
 
@@ -66,9 +67,29 @@ namespace DAL.DAO
                 dto.DepartmentID = item.departmentID;
                 dto.PositionID = item.positionID;
                 dto.OldSalary = item.amount;
+                dto.Aguinaldo = item.Aguinaldo;
                 salaryList.Add(dto);
             }
             return salaryList;
+        }
+
+        public static void UpdateSalary(DateTime value1, DateTime value2)
+        {
+            try
+            {
+                db.GenerateAguinaldo(value1,value2);
+                db.SubmitChanges();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        public static void UpdateSalary()
+        {
+          
         }
 
         public static void DeleteSalary(int salaryID)

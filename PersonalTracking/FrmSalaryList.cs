@@ -97,6 +97,7 @@ namespace PersonalTracking
             dataGridView1.Columns[11].HeaderText = "Salary";
             dataGridView1.Columns[12].Visible = false; 
             dataGridView1.Columns[13].Visible = false;
+            dataGridView1.Columns[14].HeaderText = "Aguinaldo";
 
             if (!UserStatic.isAdmin)
             {
@@ -210,6 +211,16 @@ namespace PersonalTracking
         private void btnExcel_Click(object sender, EventArgs e)
         {
             ExportToExcel.ExcelExport(dataGridView1);
+        }
+
+        private void btnAguinaldo_Click(object sender, EventArgs e)
+        {
+            FrmGenerateAguinaldo frm = new FrmGenerateAguinaldo();
+            this.Hide();
+            frm.ShowDialog();
+            this.Visible = true;
+            FillAllData();
+            CleanFilters();
         }
     }
 }

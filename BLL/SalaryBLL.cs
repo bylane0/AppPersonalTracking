@@ -40,5 +40,15 @@ namespace BLL
         {
             SalaryDAO.DeleteSalary(salaryID);
         }
+
+        public static void UpdateSalary(DateTime value1, DateTime value2)
+        {
+            SalaryDAO.UpdateSalary(value1,value2);
+        }
+
+        public static void UpdateSalary()
+        {
+            SalaryDAO.UpdateSalary();
+        }
     }
 }
